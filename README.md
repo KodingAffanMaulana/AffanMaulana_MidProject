@@ -1,102 +1,151 @@
 # MID TERM GIGIH
 
 ### Name: Affan Maulana
+
 ### ID: GG3FSGP0241
 
-
-## 1. Database Structure
-
-### 1) Comments
-### Design Collection:
-```
-{
-  username: string
-  comment: string
-  videoID: string
-  timestamp: datetime(iso 8601)
-}
-```
-### Schema:
-```
-{
-  username: {
-    type: String,
-    required: true
-  },
-  comment: {
-    type: String,
-    required: true
-  },
-  videoID: {
-    type: String,
-    required: true
-  },
-  timestamp: {
-    type: Date,
-    default: Date.now()
-  }
-}
-```
+## How To Run!
+Before running the application, make sure you have the following installed on your system:
+- Node.js and npm (Node Package Manager): Node.js: JavaScript runtime outside the browser.
+- npm: Package manager for Node.js.
+- Express.js: Web application framework for Node.js.
+- Mongoose:Object Data Modeling (ODM) library for MongoDB and Node.js.
+- MongoDB: NoSQL database
 
 
-### 2) Products
-### Design Collection:
-```
-{
-  productID: string
-  link: string
-  title: string
-  price: datetime(iso 8601)
-  videoID: string
-}
-```
-### Schema:
-```
-{
-  productID: {
-    type: String,
-    required: true
-  },
-  link: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  videoID: {
-    type: String,
-    required: true
-  }
-}
-```
+### Clone the Repository:
 
-### 3) Thumbnails
-### Design Collection:
-```
-{
-  videoID: string
-  imageUrl: string
-}
-```
-### Schema:
-```
-{
-  videoID: {
-    required: true,
-    type: String,
-  },
-  imageUrl: {
-    required: true,
-    type: String
-  }
-}
-```
+- Open a terminal or command prompt on your computer.
+Use the git clone command to clone the repository.
+
+    ``` 
+    git clone https://github.com/KodingAffanMaulana/AffanMaulana_MidProject.git 
+    ```
+
+- Navigate to the Project Directory: Change into the project directory by running:
+    ```
+    cd AffanMaulana_MidProject
+    ```
+- Install Dependencies: Use npm or yarn to install the required dependencies mentioned in the "package.json" file : ``npm install``
+
+- Set Up MongoDB:
+
+    Ensure that you have MongoDB installed and running on your machine or a remote server.
+    Create a new database named "MidProject" and the required collections ("comments", "products", and "thumbnails").
+    For an example of a database set, you can directly insert a lot of code in the following file [dummyDatabase.js](dummyDatabase.js). You can also add data using the POST method. 
+
+- Configure MongoDB URI: Open the [.env.example](.env.example) and Replace the "mongodb://localhost:27017/MidProject" with your actual MongoDB URI if needed and adjust the location of the port.
+Run the API:
+
+- To start the server, run the following command:
+    ```
+    npm run dev
+    ```
+
+The API will be running on http://localhost:3000/.
+You can use tools like Postman or cURL to test the API endpoints, such as GET /comments, POST /comments, etc.
+##
+## **1. Database Structure**
+
+- ### Design Collection Comments
+
+    ```
+    {
+        username: string
+        comment: string
+        videoID: string
+        timestamp: datetime(iso 8601)
+    }
+    ```
+
+    #### Schema
+
+    ```
+    {
+        username: {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        },
+        videoID: {
+            type: String,
+            required: true
+        },
+        timestamp: {
+            type: Date,
+            default: Date.now()
+        }
+    }
+    ```
+
+- ### Design Collection Products
+
+    ```
+    {
+        productID: string
+        link: string
+        title: string
+        price: datetime(iso 8601)
+        videoID: string
+    }
+    ```
+
+    ### Schema
+
+    ```
+    {
+        productID: {
+            type: String,
+            required: true
+        },
+        link: {
+            type: String,
+            required: true
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: Number,
+            required: true
+        },
+        videoID: {
+            type: String,
+            required: true
+        }
+    }
+    ```
+
+- ### Thumbnails
+
+    ### Design Collection
+
+    ```
+    {
+        videoID: string
+        imageUrl: string
+    }
+    ```
+
+    ### Schema
+
+    ```
+    {
+        videoID: {
+            required: true,
+            type: String,
+        },
+        imageUrl: {
+            required: true,
+            type: String
+        }
+    }
+    ```
+##
 
 ### 2. API Structure
 
@@ -123,61 +172,337 @@ MidProject/
 
 ```
 
+##
+
 ### 3. API Request and Response
 
-``` Base URL: http://localhost:3000 ```
+`Base URL: http://localhost:3000`
 
-### Comments
-```
-*** GET /comments?videoID=id_video ***
----
-Get comments or filter comments by videoID
-- URL Params  
-videoID (required) - The ID of the video for which comments are to be retrieved. Replace id_video in the URL with the actual video ID.
-- Data Params  
-None
-- Headers
-Content-Type: application/json
-- Usage:
-```
-```
-curl -X GET http://localhost:3000/comments?videoID=your_video_id
-```
-- Response:
-  - Success: (200)
-    ```
-{
-    "comments": [
-        {
-            "_id": "commentId1",
-            "username": "user1",
-            "comment": "Great video!",
-            "videoID": "your_video_id",
-            "timestamp": "2023-07-27T12:34:56.789Z"
-        }
-    ]
-}
-    ```
+### **Comments**
+
+`GET /comments?videoID=id_video` : Get comments or filter comments by videoID
+
+- Query Params : `http://localhost:3000/comments?videoID=123`, we use the query parameters videoID with a value of 123
+
+- Data Params : None
+
+- Headers : `Content-Type: application/json`
+
+- Usage : `curl -X GET http://localhost:3000/comments?videoID=your_video_id`
+
+- Response :
+
+  - Success: (201)
+
+  ```
+  [
+      {
+          "_id": "64c27aff106809c18276874f",
+          "username": "affan",
+          "comment": "cuacanya bagus",
+          "videoID": "123",
+          "timestamp": "2023-07-27T14:11:00.119Z",
+          "__v": 0
+      }
+  ]
+  ```
+
   - Errors: (404)
+
+  ```
+  {
+    "error": "No comments found for the specified VideoID"
+  }
+  ```
+
+  - Errors: (500)
+
+  ```
+  {
+    "error": "Internal server error
+  }
+  ```
+
+##
+
+`POST /comments` : Create a new comment`
+
+- Query Params : None
+
+- Data Params Raw JSON :
+
+  ```
+  {
+      "username": "fathan",
+      "comment": "satusssdfdfgddcom",
+      "videoID": "321"
+  }
+  ```
+
+- Headers : `Content-Type: application/json`
+
+- Usage : `curl -X POST -H "Content-Type: application/json" -d '{
+"username": "user123",
+"comment": "Great video!",
+"videoID": "your_video_id"
+}' http://localhost:3000/comments`
+
+- Response :
+
+  - Success: (201)
+
     ```
     {
-      "error": "Video not found"
+        "message": "Comment successfully created",
+        "Comment": {
+            "username": "fathan",
+            "comment": "satusssdfdfgddcom",
+            "videoID": "321",
+            "timestamp": "2023-07-27T14:17:14.783Z",
+            "_id": "64c282d49e21733b43a5a853",
+            "__v": 0
+        }
     }
     ```
-```
 
-GET /comments : Get all comments or filter .
-POST /comments : Create a new comment.
-```
-### Product
-```
-GET /products?videoID=id_video : Get products or filter products by videoID.
-POST /products: Create a new product.
-```
-### thumbnails
-```
-GET /thumbnails: Get all thumbnails.
-POST /thumbnails: Add a new thumbnail.
-```
+  - Errors: (404)
 
-## 4. How to run”!
+    ```
+    {
+        "error": "Comment with the same username and videoID already exists"
+    }
+    ```
+
+  - Errors: (500)
+
+    ```
+    {
+        "error": "Internal server error
+    }
+    ```
+
+##
+
+### **Products**
+
+`GET /products?videoID=id_video` : Get product data by videoID
+
+- Query Params : `http://localhost:3000/products?videoID=123`, we use the query parameters videoID with a value of 123
+
+- Data Params : none
+
+- Headers : `Content-Type: application/json`
+
+- Usage : `curl -X GET http://localhost:3000/products?videoID=your_video_id`
+
+- Response :
+
+  - Success: (201)
+
+    ```
+    [
+        {
+            "_id": "64c288581a0ee9ea3f0dd2bb",
+            "productID": "af123",
+            "link": "satusdfdfg.com",
+            "title": "roti",
+            "price": 12334,
+            "videoID": "123",
+            "__v": 0
+        }
+    ]
+    ```
+
+  - Errors: (404)
+
+    ```
+    {
+        "error": "No products found for the specified VideoID or search term"
+    }
+    ```
+
+  - Errors: (500)
+
+    ```
+    {
+        "error": "Internal server error
+    }
+    ```
+
+##
+
+`POST /products`: Create a new product. (Optional)
+
+- URL Params : None
+
+- Data Params Raw JSON :
+
+  ```
+  {
+    "productID": "af123",
+    "link": "satusdfdfg.com",
+    "title": "roti",
+    "price": 12334,
+    "videoID": "123"
+  }
+  ```
+
+- Headers : `Content-Type: application/json`
+
+- Usage : `curl -X POST -H "Content-Type: application/json" -d '{
+"productID": "af123",
+"link": "https://satusdfdfg.com",
+"title": "Roti",
+"price": 12334,
+"videoID": "123"
+}' http://localhost:3000/products`
+
+- Response :
+
+  - Success: (201)
+
+    ```
+    {
+        "message": "Product added successfully",
+        "product": {
+            "productID": "af123",
+            "link": "satusdfdfg.com",
+            "title": "roti",
+            "price": 12334,
+            "videoID": "123",
+            "_id": "64c288581a0ee9ea3f0dd2bb",
+            "__v": 0
+        }
+    }
+    ```
+
+  - Errors: (404)
+
+    ```
+    {
+        "error": "ProductID, Link, Title, Price, and VideoID are required"
+    }
+    ```
+
+  - Errors: (500)
+
+    ```
+    {
+        "error": "Internal server error
+    }
+    ```
+
+##
+
+### **Thumbnails**
+
+`GET /products` : Get Thumbnail datas by videoID
+
+- Query Params : None
+
+- Data Params : None
+
+- Headers : `Content-Type: application/json`
+
+- Usage : `curl -X GET http://localhost:3000/thumbnails`
+
+- Response :
+
+  - Success: (201)
+
+    ```
+    [
+        {
+            "_id": "64c28acb1a0ee9ea3f0dd2bf",
+            "videoID": "123",
+            "imageUrl": "FFSFSdsfF.com",
+            "__v": 0
+        },
+        {
+            "_id": "64c28ae61a0ee9ea3f0dd2c2",
+            "videoID": "132",
+            "imageUrl": "ajiadji.com",
+            "__v": 0
+        },
+        {
+            "_id": "64c28b071a0ee9ea3f0dd2c5",
+            "videoID": "456",
+            "imageUrl": "testing.com",
+            "__v": 0
+        },
+        // More thumbnails...
+    ]
+    ```
+
+  - Errors: (404)
+
+    ```
+    {
+        "error": "No thumbnails found"
+    }
+    ```
+
+  - Errors: (500)
+
+    ```
+    {
+        "error": "Internal server error
+    }
+    ```
+
+##
+
+`POST /thumbnails` : Add a new thumbnail (optional)
+
+- URL Params : None
+
+- Data Params Raw JSON :
+
+  ```
+  {
+      "videoID": "136",
+      "imageUrl": "FFSFSdsfF"
+  }
+  ```
+
+- Headers : `Content-Type: application/json`
+
+- Usage : `curl -X POST -H "Content-Type: application/json" -d '{
+"videoID": "136",
+"imageUrl": "https://example.com/thumbnail_image.jpg"
+}' http://localhost:3000/thumbnails`
+
+- Response :
+
+  - Success: (201)
+
+    ```
+    {
+        "message": "Thumbnail added successfully",
+        "thumbnails": {
+            "videoID": "456",
+            "imageUrl": "testing.com",
+            "_id": "64c28b071a0ee9ea3f0dd2c5",
+            "__v": 0
+        }
+    }
+    ```
+
+  - Errors: (404)
+
+    ```
+    {
+        "error": "VideoID and URL are required"
+    }
+    ```
+
+  - Errors: (500)
+
+    ```
+    {
+        "error": "Internal server error
+    }
+    ```
+
+##
+

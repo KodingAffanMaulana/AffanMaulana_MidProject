@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/', commentController.createComment);
 router.get('/', commentController.getComment);
 
-
+//additional
 router.get('/', commentController.getAllComments);
 router.delete('/:videoID', commentController.deleteComment);
 
