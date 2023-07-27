@@ -1,3 +1,3 @@
-## MID TERM GIGIH
-# Affan Maulana
-# GG3FSGP0241
+# MID TERM GIGIH
+### Name: Affan Maulana
+### ID: GG3FSGP0241
