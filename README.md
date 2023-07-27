@@ -15,10 +15,9 @@ Before running the application, make sure you have the following installed on yo
 
 - Open a terminal or command prompt on your computer.
   Use the git clone command to clone the repository.
-
-      ```
-      git clone https://github.com/KodingAffanMaulana/AffanMaulana_MidProject.git
-      ```
+  ```
+  git clone https://github.com/KodingAffanMaulana/AffanMaulana_MidProject.git
+  ```
 
 - Navigate to the Project Directory: Change into the project directory by running:
   ```
