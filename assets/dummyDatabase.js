@@ -1,3 +1,6 @@
+// 1. use database MidProject
+// 2. paste code in mongosh
+
 db.comments.insertMany([
     {
         "username": "affan",

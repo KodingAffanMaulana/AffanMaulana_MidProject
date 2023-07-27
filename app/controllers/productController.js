@@ -21,6 +21,28 @@ const getProduct = async (req, res) => {
     }
 };
 
+//bonus search
+const searchProduct = async (req, res) => {
+    try {
+        const { title } = req.query;
+
+        if (!title) {
+            return res.status(400).json({ error: 'title is required' });
+        }
+
+        const products = await ModelProduct.find({ title });
+
+        if (products.length === 0) {
+            res.status(404).json({ error: 'No products found for the specified search term' });
+        } else {
+            res.status(200).json(products);
+        }
+    } catch (err) {
+        console.error('Error fetching products:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
 const createProduct = async (req, res) => {
     try {
         const { productID, link, title, price, videoID } = req.body;
@@ -41,4 +63,4 @@ const createProduct = async (req, res) => {
     }
 };
 
-module.exports = { createProduct, getProduct };
+module.exports = { createProduct, getProduct, searchProduct };
