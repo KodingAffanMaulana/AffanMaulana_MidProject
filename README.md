@@ -1,150 +1,147 @@
-# MID TERM GIGIH
+# Mid Term Project (Backend Only) - Affan Maulana ( GG3FSGP0241 )
 
-### Name: Affan Maulana
-
-### ID: GG3FSGP0241
 
 ## How To Run!
+
 Before running the application, make sure you have the following installed on your system:
-- Node.js and npm (Node Package Manager): Node.js: JavaScript runtime outside the browser.
+
+- Node.js and npm (Node Package Manager)
 - npm: Package manager for Node.js.
 - Express.js: Web application framework for Node.js.
 - Mongoose:Object Data Modeling (ODM) library for MongoDB and Node.js.
 - MongoDB: NoSQL database
 
-
-### Clone the Repository:
+### Clone the Repository
 
 - Open a terminal or command prompt on your computer.
-Use the git clone command to clone the repository.
+  Use the git clone command to clone the repository.
 
-    ``` 
-    git clone https://github.com/KodingAffanMaulana/AffanMaulana_MidProject.git 
-    ```
+      ```
+      git clone https://github.com/KodingAffanMaulana/AffanMaulana_MidProject.git
+      ```
 
 - Navigate to the Project Directory: Change into the project directory by running:
-    ```
-    cd AffanMaulana_MidProject
-    ```
-- Install Dependencies: Use npm or yarn to install the required dependencies mentioned in the "package.json" file : ``npm install``
-
-- Set Up MongoDB:
-
-    Ensure that you have MongoDB installed and running on your machine or a remote server.
-    Create a new database named "MidProject" and the required collections ("comments", "products", and "thumbnails").
-    For an example of a database set, you can directly insert a lot of code in the following file [dummyDatabase.js](dummyDatabase.js). You can also add data using the POST method. 
+  ```
+  cd AffanMaulana_MidProject
+  ```
+- Install Dependencies: Use npm or yarn to install the required dependencies mentioned in the "package.json" file : `npm install`
 
 - Configure MongoDB URI: Open the [.env.example](.env.example) and Replace the "mongodb://localhost:27017/MidProject" with your actual MongoDB URI if needed and adjust the location of the port.
-Run the API:
+  Run the API:
 
 - To start the server, run the following command:
-    ```
-    npm run dev
-    ```
+  `  npm run dev` The API will be running on `http://localhost:3000/`
 
-The API will be running on http://localhost:3000/.
+- After running `npm run dev` the database and collection will be created automatically but still empty. To add it, you can directly insert a lot of code (insertmany) in the following file [dummyDatabase.js](/assets/dummyDatabase.js). You can also add data using the POST method.
+  ![image1](image.png)
+- After the collection is successfully filled
+  ![Alt text](image-1.png)
+- Screnshot Testing Method and Bonus [here](/assets/screnshoots.md).
 You can use tools like Postman or cURL to test the API endpoints, such as GET /comments, POST /comments, etc.
+
 ##
+
 ## **1. Database Structure**
 
 - ### Design Collection Comments
 
-    ```
-    {
-        username: string
-        comment: string
-        videoID: string
-        timestamp: datetime(iso 8601)
-    }
-    ```
+  ```
+  {
+      username: string
+      comment: string
+      videoID: string
+      timestamp: datetime(iso 8601)
+  }
+  ```
 
-    #### Schema
+  #### Schema
 
-    ```
-    {
-        username: {
-            type: String,
-            required: true
-        },
-        comment: {
-            type: String,
-            required: true
-        },
-        videoID: {
-            type: String,
-            required: true
-        },
-        timestamp: {
-            type: Date,
-            default: Date.now()
-        }
-    }
-    ```
+  ```
+  {
+      username: {
+          type: String,
+          required: true
+      },
+      comment: {
+          type: String,
+          required: true
+      },
+      videoID: {
+          type: String,
+          required: true
+      },
+      timestamp: {
+          type: Date,
+          default: Date.now()
+      }
+  }
+  ```
 
 - ### Design Collection Products
 
-    ```
-    {
-        productID: string
-        link: string
-        title: string
-        price: datetime(iso 8601)
-        videoID: string
-    }
-    ```
+  ```
+  {
+      productID: string
+      link: string
+      title: string
+      price: datetime(iso 8601)
+      videoID: string
+  }
+  ```
 
-    ### Schema
+  ### Schema
 
-    ```
-    {
-        productID: {
-            type: String,
-            required: true
-        },
-        link: {
-            type: String,
-            required: true
-        },
-        title: {
-            type: String,
-            required: true
-        },
-        price: {
-            type: Number,
-            required: true
-        },
-        videoID: {
-            type: String,
-            required: true
-        }
-    }
-    ```
+  ```
+  {
+      productID: {
+          type: String,
+          required: true
+      },
+      link: {
+          type: String,
+          required: true
+      },
+      title: {
+          type: String,
+          required: true
+      },
+      price: {
+          type: Number,
+          required: true
+      },
+      videoID: {
+          type: String,
+          required: true
+      }
+  }
+  ```
 
 - ### Thumbnails
 
-    ### Design Collection
+  ### Design Collection
 
-    ```
-    {
-        videoID: string
-        imageUrl: string
-    }
-    ```
+  ```
+  {
+      videoID: string
+      imageUrl: string
+  }
+  ```
 
-    ### Schema
+  ### Schema
 
-    ```
-    {
-        videoID: {
-            required: true,
-            type: String,
-        },
-        imageUrl: {
-            required: true,
-            type: String
-        }
-    }
-    ```
+  ```
+  {
+      videoID: {
+          required: true,
+          type: String,
+      },
+      imageUrl: {
+          required: true,
+          type: String
+      }
+  }
+  ```
+
 ##
 
 ### 2. API Structure
@@ -182,9 +179,9 @@ MidProject/
 
 `GET /comments?videoID=id_video` : Get comments or filter comments by videoID
 
-- Query Params : `http://localhost:3000/comments?videoID=123`, we use the query parameters videoID with a value of 123
+- Query Params : `?videoID=your_videoID`
 
-- Data Params : None
+- Link URL : `http://localhost:3000/comments?videoID=123` we use the query parameters videoID with value 123
 
 - Headers : `Content-Type: application/json`
 
@@ -227,7 +224,7 @@ MidProject/
 
 `POST /comments` : Create a new comment`
 
-- Query Params : None
+- Link URL : `http://localhost:3000/comments`
 
 - Data Params Raw JSON :
 
@@ -287,9 +284,9 @@ MidProject/
 
 `GET /products?videoID=id_video` : Get product data by videoID
 
-- Query Params : `http://localhost:3000/products?videoID=123`, we use the query parameters videoID with a value of 123
+- Query Params : `?videoID=your_videoID`
 
-- Data Params : none
+- Link URL : `http://localhost:3000/products?videoID=123` we use the query parameters videoID with value 123
 
 - Headers : `Content-Type: application/json`
 
@@ -333,7 +330,7 @@ MidProject/
 
 `POST /products`: Create a new product. (Optional)
 
-- URL Params : None
+- Link URL : `http://localhost:3000/products`
 
 - Data Params Raw JSON :
 
@@ -400,7 +397,7 @@ MidProject/
 
 - Query Params : None
 
-- Data Params : None
+- Link URL : `http://localhost:3000/thumbnails`
 
 - Headers : `Content-Type: application/json`
 
@@ -506,3 +503,52 @@ MidProject/
 
 ##
 
+### Bonus
+
+`GET /products/title?title=product_title` : Get Thumbnail datas by videoID
+
+- Query Params : `?title=product_title`, query parameter title with the value of the product you want to search for, which will be used to search for products based on that title.
+
+- Link URL : `http://localhost:3000/products/title?title=Product 2` we use the query parameters title with value title Product 2
+
+- Data Params : none
+
+- Headers : `Content-Type: application/json`
+
+- Usage : `curl -X GET "http://localhost:3000/products/title?title=Product%202" -H "Content-Type: application/json"`
+
+- Response :
+
+  - Success: (201)
+
+    ```
+    [
+        {
+            "_id": "64c29e63491e2e96fd6de1a0",
+            "productID": "prod002",
+            "link": "https://example.com/product2",
+            "title": "Product 2",
+            "price": 200,
+            "videoID": "123"
+        }
+
+    ]
+    ```
+
+  - Errors: (404)
+
+    ```
+    {
+        "error": "No products found for the specified search term"
+    }
+    ```
+
+  - Errors: (500)
+
+    ```
+    {
+        "error": "Internal server error
+    }
+    ```
+
+##
