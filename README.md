@@ -1,35 +1,183 @@
 # MID TERM GIGIH
---
+
 ### Name: Affan Maulana
 ### ID: GG3FSGP0241
---
-# Database Structure
 
-## Collection: Comments
 
-This collection stores comments made by users on specific videos.
+## 1. Database Structure
 
-### Fields:
-- `username`: (String) The username of the user who made the comment. (Required)
-- `comment`: (String) The actual comment text. (Required)
-- `videoID`: (String) The ID of the video the comment is related to. (Required)
-- `timestamp`: (Date) The timestamp when the comment was created. (Default: Date.now())
+### 1) Comments
+### Design Collection:
+```
+{
+  username: string
+  comment: string
+  videoID: string
+  timestamp: datetime(iso 8601)
+}
+```
+### Schema:
+```
+{
+  username: {
+    type: String,
+    required: true
+  },
+  comment: {
+    type: String,
+    required: true
+  },
+  videoID: {
+    type: String,
+    required: true
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now()
+  }
+}
+```
 
-## Collection: Products
 
-This collection stores information about products related to videos.
+### 2) Products
+### Design Collection:
+```
+{
+  productID: string
+  link: string
+  title: string
+  price: datetime(iso 8601)
+  videoID: string
+}
+```
+### Schema:
+```
+{
+  productID: {
+    type: String,
+    required: true
+  },
+  link: {
+    type: String,
+    required: true
+  },
+  title: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  videoID: {
+    type: String,
+    required: true
+  }
+}
+```
 
-### Fields:
-- `productID`: (String) The unique ID of the product. (Required)
-- `link`: (String) The URL link to the product. (Required)
-- `title`: (String) The title or name of the product. (Required)
-- `price`: (Number) The price of the product. (Required)
-- `videoID`: (String) The ID of the video to which the product is related. (Required)
+### 3) Thumbnails
+### Design Collection:
+```
+{
+  videoID: string
+  imageUrl: string
+}
+```
+### Schema:
+```
+{
+  videoID: {
+    required: true,
+    type: String,
+  },
+  imageUrl: {
+    required: true,
+    type: String
+  }
+}
+```
 
-## Collection: Thumbnails
+### 2. API Structure
 
-This collection stores URLs of thumbnails for videos.
+```
+MidProject/
+├── node_modules/
+├── app/
+│   ├── config/
+│   │   └── config.js
+│   ├── controllers/
+│   │   ├── commentController.js
+│   │   ├── productController.js
+│   │   └── thumbnailController.js
+│   ├── models/
+│   │   ├── Comment.js
+│   │   ├── Product.js
+│   │   └── Thumbnail.js
+│   └── routes/
+│       ├── commentRoute.js
+│       ├── productRoute.js
+│       └── thumbnailRoute.js
+├── app.js
+└── package.json
 
-### Fields:
-- `videoID`: (String) The ID of the video for which the thumbnail URL is stored. (Required)
-- `imageUrl`: (String) The URL of the thumbnail image. (Required)
+```
+
+### 3. API Request and Response
+
+``` Base URL: http://localhost:3000 ```
+
+### Comments
+```
+*** GET /comments?videoID=id_video ***
+---
+Get comments or filter comments by videoID
+- URL Params  
+videoID (required) - The ID of the video for which comments are to be retrieved. Replace id_video in the URL with the actual video ID.
+- Data Params  
+None
+- Headers
+Content-Type: application/json
+- Usage:
+```
+```
+curl -X GET http://localhost:3000/comments?videoID=your_video_id
+```
+- Response:
+  - Success: (200)
+    ```
+{
+    "comments": [
+        {
+            "_id": "commentId1",
+            "username": "user1",
+            "comment": "Great video!",
+            "videoID": "your_video_id",
+            "timestamp": "2023-07-27T12:34:56.789Z"
+        }
+    ]
+}
+    ```
+  - Errors: (404)
+    ```
+    {
+      "error": "Video not found"
+    }
+    ```
+```
+
+GET /comments : Get all comments or filter .
+POST /comments : Create a new comment.
+```
+### Product
+```
+GET /products?videoID=id_video : Get products or filter products by videoID.
+POST /products: Create a new product.
+```
+### thumbnails
+```
+GET /thumbnails: Get all thumbnails.
+POST /thumbnails: Add a new thumbnail.
+```
+
+## 4. How to run”!
