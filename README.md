@@ -1,7 +1,6 @@
 # Mid Term Project (Backend Only) - Affan Maulana ( GG3FSGP0241 )
 
-
-## How To Run!
+## **How To Run!**
 
 Before running the application, make sure you have the following installed on your system:
 
@@ -15,6 +14,7 @@ Before running the application, make sure you have the following installed on yo
 
 - Open a terminal or command prompt on your computer.
   Use the git clone command to clone the repository.
+
   ```
   git clone https://github.com/KodingAffanMaulana/AffanMaulana_MidProject.git
   ```
@@ -25,22 +25,22 @@ Before running the application, make sure you have the following installed on yo
   ```
 - Install Dependencies: Use npm or yarn to install the required dependencies mentioned in the "package.json" file : `npm install`
 
-- Configure MongoDB URI: Open the [.env.example](.env.example) and Replace the "mongodb://localhost:27017/MidProject" with your actual MongoDB URI if needed and adjust the location of the port.
+- Configure MongoDB URI: Rename [.env.example](.env.example) to `(.env)` and Replace the "mongodb://localhost:27017/MidProject" with your actual MongoDB URI if needed and adjust the location of the port.
   Run the API:
 
 - To start the server, run the following command:
   `  npm run dev` The API will be running on `http://localhost:3000/`
 
 - After running `npm run dev` the database and collection will be created automatically but still empty. To add it, you can directly insert a lot of code (insertmany) in the following file [dummyDatabase.js](/assets/dummyDatabase.js). You can also add data using the POST method.
-  ![image1](image.png)
+  ![image1](./assets/image/ima2.png)
 - After the collection is successfully filled
-  ![Alt text](image-1.png)
-- Screnshot Testing Method and Bonus [here](/assets/screnshoots.md).
-You can use tools like Postman or cURL to test the API endpoints, such as GET /comments, POST /comments, etc.
+  ![Alt text](./assets/image/ima1.png)
+- Screnshot Testing Method and Bonus [Here](/assets/screnshoots.md).
+  You can use tools like Postman or cURL to test the API endpoints, such as GET /comments, POST /comments, etc.
 
 ##
 
-## **1. Database Structure**
+## **Database Structure**
 
 - ### Design Collection Comments
 
@@ -140,10 +140,8 @@ You can use tools like Postman or cURL to test the API endpoints, such as GET /c
       }
   }
   ```
-
 ##
-
-### 2. API Structure
+## **API Structure**
 
 ```
 MidProject/
@@ -170,7 +168,7 @@ MidProject/
 
 ##
 
-### 3. API Request and Response
+## **API Request and Response**
 
 `Base URL: http://localhost:3000`
 
