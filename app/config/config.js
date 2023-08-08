@@ -1,5 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
+const corsMiddleware = require('./corsMiddleware'); // Path to your custom middleware file
+
 const thumbnails = require('../routes/thumbnailRoute');
 const products = require("../routes/productRoute");
 const comments = require("../routes/commentRoute");
@@ -19,6 +22,7 @@ db.once("connected", () => {
 
 const app = express();
 app.use(express.json());
+app.use(corsMiddleware);
 
 app.use("/products", products);
 app.use("/thumbnails", thumbnails);
