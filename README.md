@@ -4,13 +4,13 @@
 
 Before running the application, make sure you have the following installed on your system:
 
-- Node.js and npm (Node Package Manager)
+- Node.js
+- MongoDB
 - npm: Package manager for Node.js.
 - Express.js: Web application framework for Node.js.
 - Mongoose:Object Data Modeling (ODM) library for MongoDB and Node.js.
-- MongoDB: NoSQL database
 
-### Clone the Repository
+After everything is installed
 
 - Open a terminal or command prompt on your computer.
   Use the git clone command to clone the repository.
@@ -23,7 +23,7 @@ Before running the application, make sure you have the following installed on yo
   ```
   cd AffanMaulana_MidProject
   ```
-- Install Dependencies: Use npm or yarn to install the required dependencies mentioned in the "package.json" file : `npm install`
+- Install Dependencies : Use `npm install` to install the required dependencies mentioned in the "package.json" file
 
 - Configure MongoDB URI: Rename [.env.example](.env.example) to `(.env)` and Replace the "mongodb://localhost:27017/MidProject" with your actual MongoDB URI if needed and adjust the location of the port.
   Run the API:
@@ -31,7 +31,8 @@ Before running the application, make sure you have the following installed on yo
 - To start the server, run the following command:
   `  npm run dev` The API will be running on `http://localhost:3000/`
 
-- After running `npm run dev` the database and collection will be created automatically but still empty. To add it, you can directly insert a lot of code (insertmany) in the following file [dummyDatabase.js](/assets/dummyDatabase.js). You can also add data using the POST method.
+- After running `npm run dev` the database and collection will be created automatically but still empty or you can create `mongosh use MidProject`
+- To add it, you can directly insert a lot of code (insertmany) in the following file [dummyDatabase.js](/assets/dummyDatabase.js). You can also add data using the POST method.
   ![image1](./assets/image/ima2.png)
 - After the collection is successfully filled
   ![Alt text](./assets/image/ima1.png)
