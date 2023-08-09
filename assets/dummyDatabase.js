@@ -70,28 +70,23 @@ db.products.insertMany(
 
 db.thumbnails.insertMany([
     {
-        "username": "affan",
-        "comment": "Congratulation",
-        "videoID": "321"
+        "videoID": "321",
+        "imageUrl": "https://picsum.photos/200/300"
     },
     {
-        "username": "user123",
-        "comment": "Great video!",
-        "videoID": "123"
+        "videoID": "123",
+        "imageUrl": "https://picsum.photos/200/300"
     },
     {
-        "username": "jane_doe",
-        "comment": "Nice content!",
-        "videoID": "456"
+        "videoID": "456",
+        "imageUrl": "https://picsum.photos/200/300"
     },
     {
-        "username": "john_doe",
-        "comment": "Awesome video!",
-        "videoID": "789"
+        "videoID": "789",
+        "imageUrl": "https://picsum.photos/200/300"
     },
     {
-        "username": "test_user",
-        "comment": "Keep it up!",
-        "videoID": "101"
+        "videoID": "101",
+        "imageUrl": "https://picsum.photos/200/300"
     }
 ])
