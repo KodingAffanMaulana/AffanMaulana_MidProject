@@ -5,6 +5,14 @@ const thumbnailSchema = new mongoose.Schema({
         required: true,
         type: String,
     },
+    title: {
+        required: true,
+        type: String,
+    },
+    view: {
+        type: Number,
+        required: true,
+    },
     imageUrl: {
         required: true,
         type: String

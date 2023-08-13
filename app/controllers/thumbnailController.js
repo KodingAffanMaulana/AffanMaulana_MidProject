@@ -19,15 +19,15 @@ const getThumbnail = async (req, res) => {
 // API endpoint untuk menambahkan thumbnail video baru
 const createThumbnail = async (req, res) => {
     try {
-        const { videoID, imageUrl } = req.body;
+        const { videoID, title, view, imageUrl } = req.body;
 
         // Pastikan data yang dibutuhkan tersedia
-        if (!videoID || !imageUrl) {
+        if (!videoID || !imageUrl || !title || !view) {
             return res.status(400).json({ error: 'VideoID and URL are required' });
         }
 
         const Product = new ModelThumbnail({
-            videoID, imageUrl
+            videoID, title, view, imageUrl
         });
 
         // Simpan data thumbnail video ke database
@@ -40,4 +40,25 @@ const createThumbnail = async (req, res) => {
     }
 };
 
-module.exports = { createThumbnail, getThumbnail };
+const searchList = async (req, res) => {
+    try {
+        const { title } = req.query;
+
+        if (!title) {
+            return res.status(400).json({ error: 'title is required' });
+        }
+
+        const thumbnail = await ModelThumbnail.find({ title });
+
+        if (thumbnail.length === 0) {
+            res.status(404).json({ error: 'No products found for the specified search term' });
+        } else {
+            res.status(200).json(thumbnail);
+        }
+    } catch (err) {
+        console.error('Error fetching products:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+module.exports = { createThumbnail, getThumbnail, searchList };

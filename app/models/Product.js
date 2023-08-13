@@ -17,6 +17,10 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    discount: {
+        type: Number,
+        required: true
+    },
     videoID: {
         type: String,
         required: true

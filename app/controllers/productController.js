@@ -45,14 +45,14 @@ const searchProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
-        const { productID, link, title, price, videoID } = req.body;
+        const { productID, link, title, price, discount, videoID } = req.body;
 
-        if (!productID || !link || !title || !price || !videoID) {
+        if (!productID || !link || !title || !price || !videoID || !discount) {
             return res.status(400).json({ error: 'ProductID, Link, Title, Price, and VideoID are required' });
         }
 
         const Product = new ModelProduct({
-            productID, link, title, price, videoID
+            productID, link, title, price, discount, videoID
         });
 
         const saveProduct = await Product.save();
