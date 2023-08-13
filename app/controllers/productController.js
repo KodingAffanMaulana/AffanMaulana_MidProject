@@ -1,5 +1,21 @@
 const ModelProduct = require('../models/Product');
 
+const getAllProducts = async (req, res) => {
+    try {
+        const productData = await ModelProduct.find();
+
+        if (productData.length === 0) {
+            return res.status(404).json({ error: 'No Products found' });
+        }
+
+        res.status(200).json(productData);
+
+    } catch (err) {
+        console.error('Error fetching product:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
 const getProduct = async (req, res) => {
     try {
         const { videoID } = req.query;
@@ -59,22 +75,6 @@ const createProduct = async (req, res) => {
         res.status(201).json({ message: 'Product added successfully', product: saveProduct });
     } catch (err) {
         console.error('Error adding product:', err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-};
-
-const getAllProducts = async (req, res) => {
-    try {
-        const productData = await ModelProduct.find();
-
-        if (productData.length === 0) {
-            return res.status(404).json({ error: 'No Products found' });
-        }
-
-        res.status(200).json(productData);
-
-    } catch (err) {
-        console.error('Error fetching product:', err);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
