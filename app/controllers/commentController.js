@@ -30,12 +30,6 @@ const createComment = async (req, res) => {
             return res.status(400).json({ error: 'Username, Comment, and VideoID are required' });
         }
 
-        const existingComment = await ModelComment.findOne({ videoID });
-
-        if (existingComment) {
-            return res.status(404).json({ error: 'Comment with the same username and videoID already exists' });
-        }
-
         const newComment = new ModelComment({
             username,
             comment,
