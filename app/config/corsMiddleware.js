@@ -4,8 +4,8 @@ const cors = require('cors');
 
 // List of allowed domains (update this list with your desired domains)
 const allowedDomains = [
-    'https://example.com',
-    'https://subdomain.example.com',
+    'http://tokoplay-affan.netlify.app/',
+    'https://tokoplay-affan.netlify.app/',
     'http://localhost:3000', // Example local development domain
 ];
 
