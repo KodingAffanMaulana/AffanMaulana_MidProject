@@ -4,7 +4,7 @@ const thumbnailController = require('../controllers/thumbnailController');
 const router = express.Router();
 
 router.get('/', thumbnailController.getThumbnail);
+router.get('/', thumbnailController.getThumbnaiById);
 router.post('/', thumbnailController.createThumbnail);
-router.get('/video', thumbnailController.searchList);
 
 module.exports = router;

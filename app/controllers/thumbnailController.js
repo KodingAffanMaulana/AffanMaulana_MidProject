@@ -26,12 +26,12 @@ const createThumbnail = async (req, res) => {
             return res.status(400).json({ error: 'VideoID and URL are required' });
         }
 
-        const Product = new ModelThumbnail({
+        const Thumbnails = new ModelThumbnail({
             videoID, title, view, youtubeUrl, imageUrl
         });
 
         // Simpan data thumbnail video ke database
-        const saveThumbnail = await Product.save();
+        const saveThumbnail = await Thumbnails.save();
 
         res.status(201).json({ message: 'Thumbnail added successfully', thumbnails: saveThumbnail });
     } catch (err) {
@@ -40,18 +40,18 @@ const createThumbnail = async (req, res) => {
     }
 };
 
-const searchList = async (req, res) => {
+const getThumbnaiById = async (req, res) => {
     try {
-        const { title } = req.query;
+        const { videoID } = req.query;
 
-        if (!title) {
-            return res.status(400).json({ error: 'title is required' });
+        if (!videoID) {
+            return res.status(400).json({ error: 'VideoID is required' });
         }
 
-        const thumbnail = await ModelThumbnail.find({ title });
+        const thumbnail = await ModelThumbnail.find({ videoID });
 
         if (thumbnail.length === 0) {
-            res.status(404).json({ error: 'No products found for the specified search term' });
+            res.status(404).json({ error: 'No products found for the specified VideoID or search term' });
         } else {
             res.status(200).json(thumbnail);
         }
@@ -61,4 +61,4 @@ const searchList = async (req, res) => {
     }
 };
 
-module.exports = { createThumbnail, getThumbnail, searchList };
+module.exports = { createThumbnail, getThumbnail, getThumbnaiById };
