@@ -19,15 +19,15 @@ const getThumbnail = async (req, res) => {
 // API endpoint untuk menambahkan thumbnail video baru
 const createThumbnail = async (req, res) => {
     try {
-        const { videoID, title, view, imageUrl } = req.body;
+        const { videoID, title, view, imageUrl, youtubeUrl } = req.body;
 
         // Pastikan data yang dibutuhkan tersedia
-        if (!videoID || !imageUrl || !title || !view) {
+        if (!videoID || !imageUrl || !title || !view || !youtubeUrl) {
             return res.status(400).json({ error: 'VideoID and URL are required' });
         }
 
         const Product = new ModelThumbnail({
-            videoID, title, view, imageUrl
+            videoID, title, view, youtubeUrl, imageUrl
         });
 
         // Simpan data thumbnail video ke database

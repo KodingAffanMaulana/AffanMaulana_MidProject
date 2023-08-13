@@ -13,6 +13,10 @@ const thumbnailSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    youtubeUrl: {
+        type: String,
+        required: true,
+    },
     imageUrl: {
         required: true,
         type: String
