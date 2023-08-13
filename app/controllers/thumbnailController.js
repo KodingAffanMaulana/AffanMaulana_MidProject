@@ -40,7 +40,7 @@ const createThumbnail = async (req, res) => {
     }
 };
 
-const getThumbnaiById = async (req, res) => {
+const getThumbnailById = async (req, res) => {
     try {
         const { videoID } = req.query;
 
@@ -51,14 +51,14 @@ const getThumbnaiById = async (req, res) => {
         const thumbnail = await ModelThumbnail.find({ videoID });
 
         if (thumbnail.length === 0) {
-            res.status(404).json({ error: 'No products found for the specified VideoID or search term' });
+            res.status(404).json({ error: 'No thumbnail found for the specified VideoID or search term' });
         } else {
             res.status(200).json(thumbnail);
         }
     } catch (err) {
-        console.error('Error fetching products:', err);
+        console.error('Error fetching thumbnail:', err);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
 
-module.exports = { createThumbnail, getThumbnail, getThumbnaiById };
+module.exports = { createThumbnail, getThumbnail, getThumbnailById };
